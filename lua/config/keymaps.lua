@@ -20,6 +20,8 @@ vim.keymap.set({ "v", "x" }, "<M-p>", '"+P', { desc = "Void Paste" })
 
 -- Close the current buffer
 vim.keymap.set("n", "<localleader>x", ":bdelete<CR>", { desc = "Delete buffer" })
+-- Open Telescope find_files, doesn't require to be on a git directory
+vim.keymap.set("n", "<localleader>f", "<cmd>Telescope find_files<cr>", { desc = "Find Files (No git dir)" })
 
 -- open terminal
 vim.keymap.set("n", "<M-i>", function()
