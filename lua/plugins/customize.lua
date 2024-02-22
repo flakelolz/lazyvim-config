@@ -82,7 +82,9 @@ return {
       servers = {
         html = {},
         emmet_language_server = {},
-        htmx = {},
+        htmx = {
+          filetypes = { "html", "htmldjango" },
+        },
         gdscript = {
           cmd = { "ncat", "127.0.0.1", "6005" }, -- the important trick for Windows!
         },
