@@ -27,7 +27,16 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
-      -- add tsx and treesitter
+      opts.highlight = {
+        enable = true,
+        disable = function(_, bufnr)
+          local max_filesize = 10000 * 1024 -- 10 MB
+          local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
+          if ok and stats and stats.size > max_filesize then
+            return true
+          end
+        end,
+      }
       vim.list_extend(opts.ensure_installed, {
         "sql",
         "htmldjango",
@@ -36,7 +45,9 @@ return {
         "wgsl",
         "wgsl_bevy",
         "norg",
+        "zig",
       })
+
     end,
   },
 
@@ -45,8 +56,8 @@ return {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
-        -- "mypy",
-        -- "ruff",
+        "mypy",
+        "ruff",
         "css-lsp",
       })
     end,
@@ -88,6 +99,7 @@ return {
         gdscript = {
           cmd = { "ncat", "127.0.0.1", "6005" }, -- the important trick for Windows!
         },
+        zls = {},
       },
       setup = {
         clangd = function(_, opts)
@@ -190,6 +202,16 @@ return {
         "<C-n>",
         mode = { "n", "x", "v" },
         desc = "Next Multi",
+      },
+    },
+  },
+
+  {
+    "echasnovski/mini.indentscope",
+    opts = {
+      options = { try_as_border = true },
+      draw = {
+        animation = require("mini.indentscope").gen_animation.none(),
       },
     },
   },
