@@ -22,4 +22,4 @@ vim.g.autoformat = false
 
 
 -- Python
-vim.g.python3_host_prog = "C:/Users/Flake/AppData/Local/Programs/Python/Python312/python.exe"
+-- vim.g.python3_host_prog = "C:/Users/Flake/AppData/Local/Programs/Python/Python312/python.exe"

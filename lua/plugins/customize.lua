@@ -47,7 +47,6 @@ return {
         "norg",
         "zig",
       })
-
     end,
   },
 
@@ -92,6 +91,7 @@ return {
     opts = {
       servers = {
         html = {},
+        cssls = {},
         emmet_language_server = {},
         htmx = {
           filetypes = { "html", "htmldjango" },
@@ -153,11 +153,14 @@ return {
   -- Add nvim-cmp sources
   {
     "hrsh7th/nvim-cmp",
-    dependencies = { "hrsh7th/cmp-emoji" },
+    -- dependencies = { "hrsh7th/cmp-emoji" },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" }, { name = "neorg" } }))
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
+       --[[{ name = "emoji" }]]--
+        { name = "neorg" },
+      }))
     end,
   },
 
