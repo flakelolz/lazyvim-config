@@ -85,31 +85,6 @@ return {
     end,
   },
 
-  --- LSP Config
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        html = {},
-        cssls = {},
-        emmet_language_server = {},
-        htmx = {
-          filetypes = { "html", "htmldjango" },
-        },
-        gdscript = {
-          cmd = { "ncat", "127.0.0.1", "6005" }, -- the important trick for Windows!
-        },
-        zls = {},
-      },
-      setup = {
-        clangd = function(_, opts)
-          -- Fix clangd offset encoding
-          opts.capabilities.offsetEncoding = { "utf-16" }
-        end,
-      },
-    },
-  },
-
   --- Notification messages and cmdline bar at the bottom
   {
     "folke/noice.nvim",
@@ -158,7 +133,8 @@ return {
     opts = function(_, opts)
       local cmp = require("cmp")
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
-       --[[{ name = "emoji" }]]--
+        --[[{ name = "emoji" }]]
+        --
         { name = "neorg" },
       }))
     end,
